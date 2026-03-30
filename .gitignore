@@ -1,2 +1,4 @@
-# Build
-build/*
+# Basic ignore
+*.dll
+*.exe
+*.so

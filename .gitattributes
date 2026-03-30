@@ -1,0 +1,58 @@
+# AntiPirateScreen - Git Attributes
+# Author: TIBI624
+# Branch: tibi624
+
+# C Language
+src/c/*.c linguist-language=C
+src/c/*.h linguist-language=C
+src/c/CMakeLists.txt linguist-language=CMake
+
+# C++ Language
+src/cpp/*.cpp linguist-language=C++
+src/cpp/*.h linguist-language=C++
+src/cpp/CMakeLists.txt linguist-language=CMake
+
+# Python Language
+src/python/*.py linguist-language=Python
+src/python/*.pyi linguist-language=Python
+
+# JavaScript Language
+src/javascript/*.js linguist-language=JavaScript
+src/javascript/*.json linguist-documentation=false
+
+# C# Language
+src/csharp/*.cs linguist-language=C#
+src/csharp/*.csproj linguist-language=MSBuild
+src/csharp/*.xml linguist-documentation=false
+
+# Java Language
+src/java/*.java linguist-language=Java
+src/java/pom.xml linguist-language=Maven
+
+# Build System (Active)
+Makefile linguist-language=Makefile
+Makefile linguist-documentation=false
+
+# Configuration Files (exclude from stats)
+.aps/*.aps linguist-documentation=true
+.aps/*.xtml linguist-documentation=true
+.github/**/*.yml linguist-documentation=true
+*.md linguist-documentation=true
+*.txt linguist-documentation=true
+
+# Build Directories (exclude)
+build/** linguist-generated=true
+cmake-build-*/** linguist-generated=true
+node_modules/** linguist-vendored=true
+__pycache__/** linguist-vendored=true
+*.class linguist-generated=true
+*.o linguist-generated=true
+*.obj linguist-generated=true
+
+# Ensure proper detection for source files
+*.c linguist-vendored=false
+*.cpp linguist-vendored=false
+*.py linguist-vendored=false
+*.js linguist-vendored=false
+*.cs linguist-vendored=false
+*.java linguist-vendored=false
