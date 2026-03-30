@@ -1,0 +1,58 @@
+# AntiPirateScreen Injector Configuration File
+# Version: 2.0.0
+# Author: TIBI624
+# Branch: tibi624
+# 
+# WARNING: This file is intended for AntiPirateScreen utility only.
+# Standard text editors may not properly display this file format.
+# Do not modify without proper authorization.
+#
+# Purpose: Defines injection points and protection hooks for
+#          executable files during integration process.
+#
+# Format: APS Binary Configuration (Proprietary)
+# Compatible: AntiPirateScreen v2.0.0+
+# Owner: TIBI624
+
+[INJECTOR_CONFIG]
+format_version=2.0
+encryption=AES-256
+signature=APS_SIGNATURE_V2
+author=TIBI624
+
+[INJECTION_POINTS]
+entry_point=0x00401000
+import_table=0x00402000
+resource_section=0x00403000
+code_section=0x00404000
+
+[PROTECTION_HOOKS]
+license_check=enabled
+integrity_check=enabled
+debugger_check=enabled
+anti_tampering=enabled
+
+[TARGET_EXECUTABLES]
+supported_formats=PE32,PE32+,ELF32,ELF64,MACH-O
+min_file_size=1024
+max_file_size=1073741824
+
+[INJECTION_MODE]
+mode=dynamic
+preserve_checksum=true
+backup_original=true
+restore_on_failure=true
+
+[LOGGING]
+log_level=INFO
+log_file=aps_injector.log
+log_rotation=daily
+
+[SECURITY]
+require_admin=false
+bypass_av_signatures=false
+safe_mode=true
+
+[BRANCH_INFO]
+development_branch=tibi624
+author=TIBI624

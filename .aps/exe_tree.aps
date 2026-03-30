@@ -1,0 +1,69 @@
+# AntiPirateScreen Executable Tree Configuration File
+# Version: 2.0.0
+# Author: TIBI624
+# Branch: tibi624
+# 
+# WARNING: This file is intended for AntiPirateScreen utility only.
+# Standard text editors may not properly display this file format.
+# Do not modify without proper authorization.
+#
+# Purpose: Defines the executable file structure tree for
+#          protection integration and verification.
+#
+# Format: APS Binary Configuration (Proprietary)
+# Compatible: AntiPirateScreen v2.0.0+
+# Owner: TIBI624
+
+[TREE_CONFIG]
+format_version=2.0
+encryption=AES-256
+signature=APS_SIGNATURE_V2
+author=TIBI624
+
+[ROOT_DIRECTORY]
+scan_depth=10
+include_subdirectories=true
+exclude_patterns=*.tmp,*.log,*.bak
+
+[EXECUTABLE_TYPES]
+windows=.exe,.dll,.sys,.ocx,.scr
+linux=.elf,.so,.ko
+macos=.app,.dylib,.bundle
+
+[PROTECTION_LEVELS]
+level_1=basic_integrity
+level_2=advanced_integrity
+level_3=full_protection
+level_4=enterprise_protection
+
+[TREE_NODES]
+node_1=main_executable
+node_2=dependencies
+node_3=plugins
+node_4=resources
+node_5=config_files
+
+[VERIFICATION_ORDER]
+order=sequential
+parallel_threads=4
+timeout_per_file=30
+
+[HASH_ALGORITHM]
+primary=SHA-256
+secondary=MD5
+tertiary=CRC32
+
+[CACHE_SETTINGS]
+enable_cache=true
+cache_file=.aps_cache
+cache_ttl=3600
+cache_max_size=104857600
+
+[REPORTING]
+generate_report=true
+report_format=JSON
+report_file=exe_tree_report.json
+
+[BRANCH_INFO]
+development_branch=tibi624
+author=TIBI624

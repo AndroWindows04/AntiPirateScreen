@@ -1,0 +1,187 @@
+# AntiPirateScreen Build Workflow
+# Branch: tibi624
+# Author: TIBI624
+
+name: Build AntiPirateScreen
+
+on:
+  push:
+    branches: [tibi624]
+  pull_request:
+    branches: [tibi624]
+
+jobs:
+  build-c:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        include:
+          - os: windows-latest
+            artifact-name: windows-c
+          - os: ubuntu-latest
+            artifact-name: linux-c
+          - os: macos-latest
+            artifact-name: macos-c
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Setup CMake
+        uses: lukka/get-cmake@latest
+
+      - name: Configure CMake (C)
+        run: cmake -S src/c -B build/c -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build (C)
+        run: cmake --build build/c --config Release
+
+      - name: Upload Artifact (C)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact-name }}-c
+          path: build/c/
+
+  build-cpp:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:        os: [windows-latest, ubuntu-latest, macos-latest]
+        include:
+          - os: windows-latest
+            artifact-name: windows-cpp
+          - os: ubuntu-latest
+            artifact-name: linux-cpp
+          - os: macos-latest
+            artifact-name: macos-cpp
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Setup CMake
+        uses: lukka/get-cmake@latest
+
+      - name: Configure CMake (C++)
+        run: cmake -S src/cpp -B build/cpp -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build (C++)
+        run: cmake --build build/cpp --config Release
+
+      - name: Upload Artifact (C++)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact-name }}-cpp
+          path: build/cpp/
+
+  build-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          pip install -r src/python/requirements.txt
+          pip install pytest
+
+      - name: Run Tests
+        run: pytest tests/python/
+
+      - name: Build Package        run: |
+          pip install build
+          python -m build src/python/
+
+  build-javascript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm ci
+        working-directory: src/javascript
+
+      - name: Run Tests
+        run: npm test
+        working-directory: src/javascript
+
+      - name: Build
+        run: npm run build
+        working-directory: src/javascript
+
+  build-csharp:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0'
+
+      - name: Restore Dependencies
+        run: dotnet restore
+        working-directory: src/csharp
+
+      - name: Build
+        run: dotnet build --configuration Release
+        working-directory: src/csharp
+
+      - name: Run Tests
+        run: dotnet test        working-directory: src/csharp
+
+  build-java:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build with Maven
+        run: mvn clean package
+        working-directory: src/java
+
+      - name: Run Tests
+        run: mvn test
+        working-directory: src/java
+
+  validate-config:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Validate CONFIG.xtml
+        run: |
+          echo "Validating CONFIG.xtml structure..."
+          test -f .aps/CONFIG.xtml
+
+      - name: Validate APS Files
+        run: |
+          echo "Validating .aps files..."
+          test -f .aps/aps_injector.aps
+          test -f .aps/exe_tree.aps

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  AntiPirateScreen Main Configuration File
+  Version: 2.0.0
+  Author: TIBI624
+  Branch: tibi624
+  
+  WARNING: This file is intended for AntiPirateScreen utility only.
+  Standard XML parsers may not fully support this extended format.
+  Do not modify without proper authorization.
+  
+  Purpose: Main configuration file for AntiPirateScreen utility.
+           Contains all settings for protection, licensing, and
+           integration with target applications.
+  
+  Format: XTML (Extended XML) - Proprietary Format
+  Compatible: AntiPirateScreen v2.0.0+
+  Owner: TIBI624
+-->
+
+<AntiPirateScreen version="2.0.0" format="XTML" author="TIBI624">
+  
+  <!-- General Settings -->
+  <General>
+    <ProductName>AntiPirateScreen</ProductName>
+    <ProductVersion>2.0.0</ProductVersion>
+    <BuildDate>2025-01-01</BuildDate>
+    <Author>TIBI624</Author>
+    <Branch>tibi624</Branch>
+    <License>Proprietary</License>
+  </General>
+  
+  <!-- Protection Settings -->
+  <Protection>
+    <EnableLicenseCheck>true</EnableLicenseCheck>
+    <EnableIntegrityCheck>true</EnableIntegrityCheck>
+    <EnableDebuggerCheck>true</EnableDebuggerCheck>
+    <EnableAntiTampering>true</EnableAntiTampering>
+    <EnableOnlineVerification>true</EnableOnlineVerification>
+    <EnableOfflineMode>true</EnableOfflineMode>
+    <OfflineCacheTTL>86400</OfflineCacheTTL>
+  </Protection>
+  
+  <!-- Server Configuration -->
+  <Server>
+    <APIEndpoint>https://api.antipiratescreen.com/verify</APIEndpoint>
+    <TimeoutSeconds>30</TimeoutSeconds>
+    <RetryAttempts>3</RetryAttempts>
+    <UseSSL>true</UseSSL>
+    <CertificatePath>certs/server.crt</CertificatePath>  </Server>
+  
+  <!-- License Configuration -->
+  <License>
+    <Format>XXXX-XXXX-XXXX-XXXX</Format>
+    <ExpirationCheck>true</ExpirationCheck>
+    <HardwareBinding>true</HardwareBinding>
+    <MaxActivations>5</MaxActivations>
+    <GracePeriodDays>7</GracePeriodDays>
+  </License>
+  
+  <!-- File Configuration -->
+  <Files>
+    <APSInjector>.aps/aps_injector.aps</APSInjector>
+    <EXETree>.aps/exe_tree.aps</EXETree>
+    <CacheFile>.aps_cache</CacheFile>
+    <LogFile>aps.log</LogFile>
+    <BackupDir>backup/</BackupDir>
+  </Files>
+  
+  <!-- Logging Configuration -->
+  <Logging>
+    <Enabled>true</Enabled>
+    <Level>INFO</Level>
+    <Format>JSON</Format>
+    <Rotation>Daily</Rotation>
+    <MaxSize>10485760</MaxSize>
+    <MaxFiles>10</MaxFiles>
+  </Logging>
+  
+  <!-- Security Settings -->
+  <Security>
+    <Encryption>AES-256</Encryption>
+    <HashAlgorithm>SHA-256</HashAlgorithm>
+    <RequireAdmin>false</RequireAdmin>
+    <SafeMode>true</SafeMode>
+    <BypassAVSignatures>false</BypassAVSignatures>
+  </Security>
+  
+  <!-- Integration Settings -->
+  <Integration>
+    <SupportedLanguages>C,C++,Python,JavaScript,CSharp,Java</SupportedLanguages>
+    <SupportedPlatforms>Windows,Linux,macOS</SupportedPlatforms>
+    <LibraryName>AntiPirateScreen</LibraryName>
+    <LibraryType>Static,Shared</LibraryType>
+  </Integration>
+  
+  <!-- Branch Configuration -->
+  <Branches>
+    <Development>tibi624</Development>    <Release>release/*</Release>
+    <Author>TIBI624</Author>
+  </Branches>
+  
+</AntiPirateScreen>
