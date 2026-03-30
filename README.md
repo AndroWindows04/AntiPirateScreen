@@ -1,4 +1,3 @@
-```markdown
 > ⚠️ This branch (tibi624) belongs to TIBI624 | Go to `main` branch to see AndroWindows04's work
 
 # AntiPirateScreen – Make Your Applications Secureful
@@ -291,4 +290,3 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 [![Watch](https://img.shields.io/badge/Watch-Repo-red?style=for-the-badge&logo=github)](https://github.com/AndroWindows04/AntiPirateScreen/subscription)
 
 </div>
-```
