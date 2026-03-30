@@ -1,2 +1,3 @@
-# AntiPirateScreen
-This screen is for developers
+*Note: This branch is by TIBI624. Go to `main` branch to see AndroWindows04's version.*
+# AntiPirateScreen — Secure Your Application
+The README in progress. Coming soon...
